@@ -9,51 +9,38 @@
 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-    <link rel="stylesheet"href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 		<script type="text/javascript">
     	</script>
     </head>
     <body>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <i class="fab fa-pagelines fa-3x" style="color:rgb(35, 160, 35);" aria-hidden="true"></i>
-                    <a class="navbar-brand col-2" >Ecogram</a>
+                    <a class="navbar-brand col-2" href="#">Ecogram</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse col-10" id="navbarNavDropdown">
                       <ul class="navbar-nav col-12">
                         <li class="nav-item active col-4">
-                          <a class="nav-link " href="#Acceuil">Accueil <span class="sr-only">(current)</span></a>
+                          <a class="nav-link " href="#">Accueil <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown col-4 ">
-                                <a class="nav-link dropdown-toggle" href="#Mes_evenements" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   Mes Evenements
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#Creer_events">Créer mes évenements</a>
-                                        <a class="dropdown-item" href="#Listes_events">Listes de mes évenements</a>
+                                        <a class="dropdown-item" href="#">Créer mes évenements</a>
+                                        <a class="dropdown-item" href="#">Listes de mes évenements</a>
                                       </div>
                                     </li>
                         <li class="nav-item col-4">
-                          <a class="nav-link" href="#Annonceur">Annonceur suivi</a>
+                          <a class="nav-link" href="#">Annonceur suivi</a>
                         </li>
 
                           
                       </ul>
                     </div>
                   </nav>
-                  <div id="macarte" style="width: 960px; height: 720px;"></div>
-                  <script>
-                      var mymap = L.map('macarte').setView([46.3630104, 2.9846608], 6);
-                      L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		maxZoom: 18,
-		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		id: 'mapbox.streets'
-	}).addTo(mymap);                    
-  </script>
 	</body>
 </html> 
