@@ -13,9 +13,10 @@
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     <link rel="stylesheet"href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
 		<script type="text/javascript">
-    	</script>
+      </script>
+      
     </head>
-    <body>
+    <body style="background-color:green;">
       
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                     <i class="fab fa-pagelines fa-3x" style="color:rgb(35, 160, 35);" aria-hidden="true"></i>
@@ -26,7 +27,7 @@
                     <div class="collapse navbar-collapse col-10" id="navbarNavDropdown">
                       <ul class="navbar-nav col-12">
                         <li class="nav-item active col-3">
-                          <a class="nav-link " href="#Acceuil">Accueil <span class="sr-only">(current)</span></a>
+                          <a class="nav-link " href="projet.html">Accueil <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown col-3 ">
                                 <a class="nav-link dropdown-toggle" href="#Mes_evenements" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -34,7 +35,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="#Creer_events">Créer mes évenements</a>
-                                        <a class="dropdown-item" href="#Listes_events">Listes de mes évenements</a>
+                                        <a class="dropdown-item" href="Listes_events.html">Listes de mes évenements</a>
                                       </div>
                                     </li>
                         <li class="nav-item col-3">
@@ -48,18 +49,41 @@
                       </ul>
                     </div>
                   </nav>
-                <div class="col-12">
-                  <div class="d-inline">
-                    <div id="macarte" style="width: 960px; height: 720px;"></div>
+                <div class="col-12" >
+                  
+                  
+                  <div class="d-inline col-6" >
+                    <fieldset style="float:left">
+                      <legend>Carte des évenements :</legend>
+                    <div id="macarte" style="width: 620px; height: 500px; float:left"></div>
+                  </fieldset>
                 </div>
-                  <div class="d-inline" style="text-align: right">
-                    dyuddytd
-                      <!--<form>
-                        <div>
-                          <input type="text" placeholder="Entrer la ville de l'évenement">
-                          <button type="submit">Rechercher</button>
-                        </div>
-                      </form>-->
+
+                  <div class="d-inline col-6" style="text-align: center ; line-height:65px;">
+                    <fieldset>
+                    <legend>Rechercher un évenement</legend>
+                    <form id="form1" class="form-inline" >
+                      <label for="Nom" class="mr-sm-2" style="padding:0% 9% 0% 20%">Nom de l'évenement:</label>
+                      <input id="Nom" class="form-control " type="text" placeholder="Nom de l'évenement recherché" >
+                    </form>
+                    
+                    <form class="form-inline">
+                      <label for="Ville" class="mr-sm-2" style="padding:0% 9% 0% 20%">Ville de l'évenement:</label>
+                      <input id="Ville" class="form-control " type="text" placeholder="Ville de l'évenement recherché" >
+                    </form>
+                    
+                    <form class="form-inline">
+                      <label for="cdpost" class="mr-sm-2 " style="padding:0% 1% 0% 20%">Code Postal de l'évenement:</label>
+                      <input id="cdpost" class="form-control " type="text" placeholder="Code Postal de l'évenement recherché" >
+                    </form>
+                    
+                      
+                      <form class="form-inline">
+                        <label for="adr" class="mr-sm-2" style="padding:0% 5% 0% 20%">Adresse de l'évenement:</label>
+                      <input id="adr" class="form-control " type="text" placeholder="Adresse de l'évenement recherché">
+                    </form>
+                      <button class="btn btn-primary float-right" type="submit" onclick="submitForms()">Rechercher</button>
+                  </fieldset>
                     </div>
                 </div>
 
@@ -72,7 +96,21 @@
 			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		id: 'mapbox.streets'
-	}).addTo(mymap);                    
+	}).addTo(mymap);  
+
+
+  submitForms = function(){
+    var nom =document.getElementById("Nom").value;
+    document.getElementById("Nom").value = '';
+    var ville=document.getElementById("Ville").value;
+    document.getElementById("Ville").value = '';
+    var codepost=document.getElementById("cdpost").value;
+    document.getElementById("cdpost").value = '';
+    var adr=document.getElementById("adr").value;
+    document.getElementById("adr").value = '';
+    var request=nom+" "+ville+" "+codepost+" "+adr;
+    alert(request);
+}                  
   </script>
                     
 
