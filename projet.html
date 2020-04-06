@@ -19,7 +19,7 @@
     <body style="background-color:green;">
       
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <i class="fab fa-pagelines fa-3x" style="color:rgb(35, 160, 35);" aria-hidden="true"></i>
+                    <i class="fab fa-pagelines fa-3x" style="color:green;" aria-hidden="true"></i>
                     <a class="navbar-brand col-2" >Ecogram</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
@@ -54,32 +54,31 @@
                   
                   <div class="d-inline col-6" >
                     <fieldset style="float:left">
-                      <legend>Carte des évenements :</legend>
+                      <legend style="color:white">Carte des évenements :</legend>
                     <div id="macarte" style="width: 620px; height: 500px; float:left"></div>
                   </fieldset>
                 </div>
 
                   <div class="d-inline col-6" style="text-align: center ; line-height:65px;">
                     <fieldset>
-                    <legend>Rechercher un évenement</legend>
+                    <legend style="color:white">Rechercher un évenement</legend>
+                      
                     <form id="form1" class="form-inline" >
-                      <label for="Nom" class="mr-sm-2" style="padding:0% 9% 0% 20%">Nom de l'évenement:</label>
+					<label for="Nom" class="mr-sm-2" style="padding:0% 9% 0% 20% ;color:white">Nom de l'évenement:</label>
                       <input id="Nom" class="form-control " type="text" placeholder="Nom de l'évenement recherché" >
                     </form>
                     
                     <form class="form-inline">
-                      <label for="Ville" class="mr-sm-2" style="padding:0% 9% 0% 20%">Ville de l'évenement:</label>
+                      <label for="Ville" class="mr-sm-2" style="padding:0% 9% 0% 20% ;color:white">Ville de l'évenement:</label>
                       <input id="Ville" class="form-control " type="text" placeholder="Ville de l'évenement recherché" >
                     </form>
                     
                     <form class="form-inline">
-                      <label for="cdpost" class="mr-sm-2 " style="padding:0% 1% 0% 20%">Code Postal de l'évenement:</label>
+                      <label for="cdpost" class="mr-sm-2 " style="padding:0% 9% 0% 20% ;color:white">Code Postal de l'évenement:</label>
                       <input id="cdpost" class="form-control " type="text" placeholder="Code Postal de l'évenement recherché" >
                     </form>
-                    
-                      
                       <form class="form-inline">
-                        <label for="adr" class="mr-sm-2" style="padding:0% 5% 0% 20%">Adresse de l'évenement:</label>
+                        <label for="adr" class="mr-sm-2" style="padding:0% 9% 0% 20% ;color:white">Adresse de l'évenement:</label>
                       <input id="adr" class="form-control " type="text" placeholder="Adresse de l'évenement recherché">
                     </form>
                       <button class="btn btn-primary float-right" type="submit" onclick="submitForms()">Rechercher</button>
