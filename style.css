@@ -1,0 +1,66 @@
+#scroll {
+    height:400px;
+    overflow-y:scroll;
+    overflow:auto;
+}
+#te1{
+    width:18em
+}
+#te2{
+    width:10em
+}
+#te3{
+    width:13em
+}
+#te4{
+    width:15em
+}
+#trannonce {
+    border-bottom:double
+}
+#tdannonce {
+    border:none;
+}
+#divannonce {
+    border:double;
+}
+#logo{
+    color:green;
+}
+#soustabl{
+    padding: 0;
+}
+body {
+    background-color:green;
+}
+legend , label {
+    color : white;
+}
+
+table {
+    background-color: white;
+}
+
+#lNom , #ladr   {
+    padding:0% 9% 0% 20% ;
+
+}
+
+#lcdpost {
+    padding:0% 5% 0% 20% ;
+}
+
+#lVille {
+    padding:0% 13% 0% 20% ;
+}
+
+#searchevent {
+    text-align: center ; 
+    line-height:65px;
+}
+
+#macarte {
+    width: 620px; 
+    height: 500px; 
+    float:left
+}
