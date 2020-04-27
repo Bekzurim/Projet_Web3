@@ -51,7 +51,7 @@ if (!isset($_SESSION['islog'])) {
                           <a class="nav-link" href="Annonceur.php">Annonceur suivi</a>
                         </li>
                         <li class="nav-item col-3">
-                            <a class="nav-link" href="#Profil">Mon Profil</a>
+                            <a class="nav-link" href="Profil.php">Mon Profil</a>
                           </li>
 
                           

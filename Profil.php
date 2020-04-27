@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['islog'])) {
+	header('Location: Login.html');
+	exit;
+}
+?>
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -19,14 +27,14 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <i id="logo" class="fab fa-pagelines fa-3x"  aria-hidden="true"></i>
-    <a class="navbar-brand col-2" >Ecogram</a>
+    <a class="navbar-brand col-2" ><?=$_SESSION['pseudo']?></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse col-10" id="navbarNavDropdown">
       <ul class="navbar-nav col-12">
         <li class="nav-item active col-3">
-          <a class="nav-link " href="projet.html">Accueil </a>
+          <a class="nav-link " href="Accueil.php">Accueil </a>
         </li>
         <li class="nav-item dropdown col-3 ">
                 <a class="nav-link dropdown-toggle" href="#Mes_evenements" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -34,14 +42,15 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#Creer_events">Créer mes évenements</a>
-                        <a class="dropdown-item" href="Listes_events.html">Listes de mes évenements</a>
+                        <a class="dropdown-item" href="Listes_events.php">Listes de mes évenements</a>
+                        <a class="dropdown-item" href="Recherche_event.php">Rechercher un évenement</a>
                       </div>
                     </li>
         <li class="nav-item col-3">
-          <a class="nav-link" href="Annonceur.html">Annonceur suivi</a>
+          <a class="nav-link" href="Annonceur.php">Annonceur suivi</a>
         </li>
         <li class="nav-item col-3">
-            <a class="nav-link" href="Mon_profil.html">Mon Profil</a>
+            <a class="nav-link" href="Profil.php">Mon Profil</a>
           </li>
 
           
@@ -51,7 +60,7 @@
 <div class="container">
 	<div class="row">
 		<div class=".col-6 .col-md-4">
-			<img src="C:\Users\aymer\Documents\Fac\L3\S6\Web\Projet_Web3-master\Photos\mec1.jpg">
+			<img src="https://cdn.pixabay.com/photo/2019/08/11/11/28/man-4398724_960_720.jpg" height="300" width="200">
 		</div>
 		<div class="col-xs-12 col-sm-8">
 			<h2>Jean Jacques</h2>
