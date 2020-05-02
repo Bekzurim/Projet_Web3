@@ -1,9 +1,10 @@
 <?php
-session_start();
+include_once 'recup_event.php';
 if (!isset($_SESSION['islog'])) {
 	header('Location: Login.html');
 	exit;
 }
+
 ?>
 <!doctype html>
 <html lang="fr">
@@ -17,8 +18,13 @@ if (!isset($_SESSION['islog'])) {
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-    <link rel="stylesheet"href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+	<script type="application/javascript" src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 		<script type="text/javascript">
       </script>
       <link href="style.css" rel="stylesheet" media="all" type="text/css"> 
@@ -104,7 +110,28 @@ if (!isset($_SESSION['islog'])) {
 			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
 			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 		id: 'mapbox.streets'
-	}).addTo(mymap);  
+  }).addTo(mymap);  
+  
+
+  var clusterLayer = L.markerClusterGroup();
+		
+    var popup = L.popup();
+    var markers=<?php echo $marker?>;
+      for (m in markers) {
+		marker = L.marker([markers[m].lat, markers[m].lng], {
+			id: markers[m].id
+		})
+		.addTo(clusterLayer)
+
+		marker.bindPopup('<a href="http://www.airbnb.com/rooms/'+markers[m].id+'" target="blank">'+markers[m].id+"</a>");
+		marker.on('click', function (e) {
+			this.openPopup();
+		});
+	}	
+		
+	mymap.addLayer(clusterLayer);
+      
+
 
 
   submitForms = function(){

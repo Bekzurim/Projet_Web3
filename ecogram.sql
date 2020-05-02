@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 27 avr. 2020 à 03:11
+-- Généré le : sam. 02 mai 2020 à 19:56
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP : 7.4.4
 
@@ -44,7 +44,9 @@ INSERT INTO `Actualite` (`id_actualite`, `dateA`, `heureA`, `contenue`, `id_anno
 (2, '2020-04-19', '15:02:00', 'Finallement j\'avais mal compris ! Il vont agrandir le parc! Ouf sauver !', 5),
 (3, '2020-04-19', '18:05:54', 'Je participe a la marche organiser par ma ville ! Hâte d\'y être !', 4),
 (4, '2020-04-19', '20:00:00', 'L’événement de la semaine dernière était vraiment mal organiser... C\'est une honte !\r\n#OnNousMent', 3),
-(5, '2020-04-20', '15:01:00', 'Renseigner vous avant de dire des bêtises !', 2);
+(5, '2020-04-20', '15:01:00', 'Renseigner vous avant de dire des bêtises !', 2),
+(6, '2020-05-02', '16:18:29', 'test de commentaire en esperant que ca marche', 1),
+(10, '2020-05-02', '17:15:13', 'Bon ben ca marche', 1);
 
 -- --------------------------------------------------------
 
@@ -114,8 +116,8 @@ CREATE TABLE `Evenement` (
   `DateE` date NOT NULL,
   `heure_debut` time DEFAULT NULL,
   `heure_fin` time DEFAULT NULL,
-  `longitude` int(11) DEFAULT NULL,
-  `latitude` int(11) DEFAULT NULL,
+  `longitude` float DEFAULT NULL,
+  `latitude` float DEFAULT NULL,
   `description_event` text DEFAULT NULL,
   `id_type` int(100) NOT NULL,
   `id_annonceur` int(100) NOT NULL
@@ -126,9 +128,9 @@ CREATE TABLE `Evenement` (
 --
 
 INSERT INTO `Evenement` (`id_evenement`, `nom_event`, `ville_event`, `code_postal_event`, `adresse_event`, `DateE`, `heure_debut`, `heure_fin`, `longitude`, `latitude`, `description_event`, `id_type`, `id_annonceur`) VALUES
-(1, 'Marche verte organiser par le club de rugby', 'Toulouse', 31000, 'Jardin des Plantes', '2020-04-18', '15:00:00', '18:00:00', 44, 1, 'Marche Verte organiser pas le Stade toulousain. Départ à 15h au jardin des Plantes. Venez nombreux!', 1, 5),
-(2, 'Manifestation pour le climat', '', 31000, 'Place du Capitole', '2020-04-15', '14:30:00', '16:00:00', 44, 1, 'Manifestation pour le climat. Faisons bouger les choses ensembles.', 3, 5),
-(3, 'Journée mondiale des lapins', 'Toulouse', 31000, 'Prairies des Filtres', '2020-04-07', '09:30:00', '19:00:00', 44, 1, 'Journée Mondiale pour la protection des Lapins, des activités sont disponibles pour en apprendre plus sur les lapins et autres rongeur. Venez avec vos enfant.', 4, 5);
+(1, 'Marche verte organiser par le club de rugby', 'Toulouse', 31000, 'Jardin des Plantes', '2020-04-18', '15:00:00', '18:00:00', 1.263, 44.152, 'Marche Verte organiser pas le Stade toulousain. Départ à 15h au jardin des Plantes. Venez nombreux!', 1, 5),
+(2, 'Manifestation pour le climat', '', 31000, 'Place du Capitole', '2020-04-15', '14:30:00', '16:00:00', 1.563, 44.532, 'Manifestation pour le climat. Faisons bouger les choses ensembles.', 3, 5),
+(3, 'Journée mondiale des lapins', 'Toulouse', 31000, 'Prairies des Filtres', '2020-04-07', '09:30:00', '19:00:00', 1.845, 44.451, 'Journée Mondiale pour la protection des Lapins, des activités sont disponibles pour en apprendre plus sur les lapins et autres rongeur. Venez avec vos enfant.', 4, 5);
 
 -- --------------------------------------------------------
 
@@ -147,7 +149,13 @@ CREATE TABLE `likes_dislikes` (
 --
 
 INSERT INTO `likes_dislikes` (`id_annonc`, `id_post`, `action`) VALUES
+(1, 1, 'like'),
 (1, 2, 'like'),
+(1, 3, 'like'),
+(1, 4, 'dislike'),
+(1, 6, 'like'),
+(1, 7, 'like'),
+(1, 10, 'like'),
 (2, 2, 'dislike');
 
 -- --------------------------------------------------------
@@ -323,7 +331,7 @@ ALTER TABLE `Utilisation`
 -- AUTO_INCREMENT pour la table `Actualite`
 --
 ALTER TABLE `Actualite`
-  MODIFY `id_actualite` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_actualite` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `annonceur`

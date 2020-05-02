@@ -110,7 +110,7 @@ function userDisliked($post_id)
   }
 }
 
-$sql = "SELECT * FROM Actualite";
+$sql = "SELECT * FROM Actualite ORDER BY id_actualite DESC";
 $result = mysqli_query($con, $sql);
 // fetch all posts from database
 // return them as an associative array called $posts

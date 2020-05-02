@@ -1,9 +1,10 @@
 <?php
 include_once('Chatsystem.php');
 
+
 if (!isset($_SESSION['islog'])) {
 	header('Location: Login.html');
-	exit;
+  exit;
 }
 ?>
 <!doctype html>
@@ -62,9 +63,17 @@ if (!isset($_SESSION['islog'])) {
                           </ul>
     </div>
   </nav>
+  <form id="commentaire" action="Commentary.php" method="post" >
+  <input type="text" name="contenu" id="contenu" placeholder="Entrer votre commentaire" size="55" minlength="1" />
+  <input type="submit" value="OK">
+  </form>
   <div class="posts-wrapper">
    <?php foreach ($posts as $post): ?>
+    
    	<div class="post">
+     <div class="auteur">
+     <?php echo "Ecrit par ".idis($post['id_annonceur'])." le ".$post['dateA']." à ".$post['heureA']." : "?>
+    </div>
       <?php echo $post['contenue']; ?>
       <div class="post-info">
 	    <!-- if user likes post, style button differently -->
@@ -88,7 +97,7 @@ if (!isset($_SESSION['islog'])) {
       	  data-id="<?php echo $post['id_actualite'] ?>"></i>
       	<span class="dislikes"><?php echo getDislikes($post['id_actualite']); ?></span>
       </div>
-   	</div>
+     </div>
    <?php endforeach ?>
   </div>
   <script src="script.js"></script>

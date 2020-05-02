@@ -53,6 +53,17 @@ table {
 #lVille {
     padding:0% 13% 0% 20% ;
 }
+#commentaire{
+        width: 30%;
+        margin: 0 auto;
+
+}
+
+#contenu{
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
 
 #searchevent {
     text-align: center ; 
@@ -149,12 +160,21 @@ span.tags
     
     width: 400px; 
 }
+    .auteur{
+    border-bottom: 2px solid black;
+
+    }
+    
     .post {
     background-color: white;
     border:1px ridge black;
+    border-radius: 4px;
     padding-bottom: 5%;
+    margin : 5%
     }
     .post-info {
+right:30px;
+bottom:30px;
         margin: 0 auto;
     
     width: 400px; 
