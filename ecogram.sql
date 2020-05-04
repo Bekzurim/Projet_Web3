@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 02 mai 2020 à 19:56
+-- Généré le : mar. 05 mai 2020 à 00:50
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP : 7.4.4
 
@@ -74,11 +74,11 @@ CREATE TABLE `annonceur` (
 --
 
 INSERT INTO `annonceur` (`id_annonceur`, `pseudonyme`, `nom`, `prenom`, `adresse`, `code_postal`, `ville`, `date_naissance`, `adresse_mail`, `description`, `image`, `password`) VALUES
-(1, 'Deteross', 'Clément', 'Eloire', '8 rue des Huppes', 82210, 'Saint-Nicolas', '1999-02-02', 'adresse@gmail.com', 'J\'aime l\'écologie et je fais ce que je peux pour l\'aider!', NULL, '123'),
-(2, 'Gribli', 'Frédéric', 'Dupuis', '5 avenue des Cerises', 78000, 'Andrésy', '1986-06-06', 'fred.dupuis@gmail.com', 'Moi l\'écologie c\'est ma passion !', NULL, '456'),
-(3, 'Jidua', 'Maeva', 'Lafevre', 'Boulevard Charles de Gaule', 69520, 'Grigni', '0000-00-00', 'Maeva69520@gmail.com', 'Sauvons la planète ! ', NULL, '789'),
-(4, 'xXkillerXx', 'Enzo', 'Trad', '85 bis rue de la métaphore', 45200, 'Montargis', '1980-10-10', 'trad.e@gmail.com', 'Nouvel événement dans les mois qui viennent.', NULL, 'abc'),
-(5, 'Albafica', 'Alice', 'Merveille ', 'Rue du Lapin', 44440, 'Pannécé', '1980-12-12', 'Pays.Merveille@gmail.com', 'J\'adore les lapins! Protégeons les lapins! ', NULL, 'def');
+(1, 'Deteross', 'Clément', 'Eloire', '8 rue des Huppes', 82210, 'Saint-Nicolas', '1999-02-02', 'adresse@gmail.com', 'J\'aime l\'écologie et je fais ce que je peux pour l\'aider!', 'image/roi-echec.png', '123'),
+(2, 'Gribli', 'Frédéric', 'Dupuis', '5 avenue des Cerises', 78000, 'Andrésy', '1986-06-06', 'fred.dupuis@gmail.com', 'Moi l\'écologie c\'est ma passion !', 'image/puit.png', '456'),
+(3, 'Jidua', 'Maeva', 'Lafevre', 'Boulevard Charles de Gaule', 69520, 'Grigni', '0000-00-00', 'Maeva69520@gmail.com', 'Sauvons la planète ! ', 'image/test.png', '789'),
+(4, 'xXkillerXx', 'Enzo', 'Trad', '85 bis rue de la métaphore', 45200, 'Montargis', '1980-10-10', 'trad.e@gmail.com', 'Nouvel événement dans les mois qui viennent.', 'image/feuillemorte.png', 'abc'),
+(5, 'Albafica', 'Alice', 'Merveille ', 'Rue du Lapin', 44440, 'Pannécé', '1980-12-12', 'Pays.Merveille@gmail.com', 'J\'adore les lapins! Protégeons les lapins! ', 'image/lapin.png', 'def');
 
 -- --------------------------------------------------------
 
@@ -129,7 +129,7 @@ CREATE TABLE `Evenement` (
 
 INSERT INTO `Evenement` (`id_evenement`, `nom_event`, `ville_event`, `code_postal_event`, `adresse_event`, `DateE`, `heure_debut`, `heure_fin`, `longitude`, `latitude`, `description_event`, `id_type`, `id_annonceur`) VALUES
 (1, 'Marche verte organiser par le club de rugby', 'Toulouse', 31000, 'Jardin des Plantes', '2020-04-18', '15:00:00', '18:00:00', 1.263, 44.152, 'Marche Verte organiser pas le Stade toulousain. Départ à 15h au jardin des Plantes. Venez nombreux!', 1, 5),
-(2, 'Manifestation pour le climat', '', 31000, 'Place du Capitole', '2020-04-15', '14:30:00', '16:00:00', 1.563, 44.532, 'Manifestation pour le climat. Faisons bouger les choses ensembles.', 3, 5),
+(2, 'Manifestation pour le climat', 'Toulouse', 31000, 'Place du Capitole', '2020-04-15', '14:30:00', '16:00:00', 1.563, 44.532, 'Manifestation pour le climat. Faisons bouger les choses ensembles.', 3, 5),
 (3, 'Journée mondiale des lapins', 'Toulouse', 31000, 'Prairies des Filtres', '2020-04-07', '09:30:00', '19:00:00', 1.845, 44.451, 'Journée Mondiale pour la protection des Lapins, des activités sont disponibles pour en apprendre plus sur les lapins et autres rongeur. Venez avec vos enfant.', 4, 5);
 
 -- --------------------------------------------------------
@@ -153,6 +153,7 @@ INSERT INTO `likes_dislikes` (`id_annonc`, `id_post`, `action`) VALUES
 (1, 2, 'like'),
 (1, 3, 'like'),
 (1, 4, 'dislike'),
+(1, 5, 'dislike'),
 (1, 6, 'like'),
 (1, 7, 'like'),
 (1, 10, 'like'),
@@ -202,7 +203,6 @@ CREATE TABLE `Suivre` (
 INSERT INTO `Suivre` (`id_annonceur1`, `id_annonceur2`) VALUES
 (1, 3),
 (2, 1),
-(2, 5),
 (3, 1),
 (3, 2),
 (4, 1),

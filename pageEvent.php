@@ -5,9 +5,23 @@ if (!isset($_SESSION['islog'])) {
 	exit;
 }
 
+$id=$_POST["id_event"];
 
-$query="SELECT * FROM annonceur WHERE id_annonceur!=".$_SESSION["id"];
+$query="SELECT * FROM Evenement WHERE id_evenement=".$id;
 $result = mysqli_query($con, $query);
+$event = $result->fetch_array();
+
+$query2="SELECT pseudonyme FROM Annonceur WHERE id_annonceur=".$event["id_annonceur"];
+$result = mysqli_query($con, $query2);
+$createur = $result->fetch_array();
+
+$query3="SELECT libelle FROM TypeEvent WHERE id_type=".$event["id_type"];
+$result = mysqli_query($con, $query3);
+$typeevent = $result->fetch_array();
+
+
+
+
 ?>
 <!doctype html>
 <html lang="fr">
@@ -21,23 +35,19 @@ $result = mysqli_query($con, $query);
 		<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-    <link rel="stylesheet"href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-    <script type="text/javascript">
-    $(document).ready(function(){
-	document.getElementById("tableSearch").value = '';
-  $("#tableSearch").on("keyup", function() {
-    var value = $(this).val();
-    $("#Tableevent tr").filter(function() {
-      $(this).toggle($(this).text().indexOf(value) > -1)
-    });
-  });
-});
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+	<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+	<script type="application/javascript" src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+		<script type="text/javascript">
       </script>
       <link href="style.css" rel="stylesheet" media="all" type="text/css"> 
       
-</head>
-<body>
+    </head>
+    <body>
       
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         
@@ -73,57 +83,19 @@ $result = mysqli_query($con, $query);
                     </ul>
 </div>
 </nav>
-  <div class="container" >
-      <label > Rechercher un annonceur </label>
-    <input class="form-control mb-4" id="tableSearch" type="text"
-      placeholder="Type something to search list items" ></input>
-    <div id="scroll">
-    <table class="table table-bordered table-striped">
-      <tbody id="Tableevent">
-        <?php
-        while($annonc = $result->fetch_array())
-        {
-          $query2 = "SELECT COUNT(id_evenement) FROM Evenement WHERE id_annonceur=".$annonc["id_annonceur"];
-          $result2 = mysqli_query($con, $query2);
-          $nbrannonc = $result2->fetch_array();
-          $query3 = "SELECT id_annonceur1 FROM Suivre WHERE id_annonceur2=".$annonc["id_annonceur"];
-          $result3 = mysqli_query($con, $query3);
-          while($isfollow = $result3->fetch_array())
-{
-$isfollowed[] = $isfollow[0];
-}
-          if(in_array($_SESSION["id"], $isfollowed)){
-            $bouton='<div class="row">
-            <div class="col-6 alert alert-success" role="alert">
-            <i class="fa fa-check"></i>Followed
-          </div><form class="col-6" action="Suivre.php" method="post">
-          <div>
-            <input type="hidden" name="id1" value="'.$_SESSION["id"].'" />
-            <input type="hidden" name="id2" value="'.$annonc["id_annonceur"].'" />
-            <input type="hidden" name="id3" value="unfollow" />
-            <input type="submit" value="Ne plus Suivre" />
-          </div>
-        </form></div>';
-          } else {
-            $bouton='<form action="Suivre.php" method="post">
-            <div>
-              <input type="hidden" name="id1" value="'.$_SESSION["id"].'" />
-              <input type="hidden" name="id2" value="'.$annonc["id_annonceur"].'" />
-              <input type="hidden" name="id3" value="follow" />
-              <input type="submit" value="Suivre" />
-            </div>
-          </form>';
-          }
-          $isfollowed = array();
-          echo '<tr id="trannonce">
-          <td id="tdannonce"><img src="'.$annonc["image"].'" height="50" width="55" alt="image random"></img></td>
-          <td id="tdannonce"><div >'.$annonc["pseudonyme"].'</div><div> nombre d annonce: '.$nbrannonc[0].'</div></td>
-          <td id="tdannonce"><div id="divannonce" >'.$annonc["description"].'</div>'.$bouton.'</td>
-        </tr>';}
-          ?>
-      </tbody>
-    </table>
+
+<div class="container">
+	<div class="row">
+		<div class="col" >
+            <img src="https://pixabay.com/get/55e0d64a4352ad14f6d1867dda35367b1d37d8e55650794a_1920.jpg" height="300" width="500" style="float:left">
+        <div>
+            <div class="col">
+			<h2> <?php echo $event["nom_event"]; ?> </h2>
+					<p><strong>Adresse evenement :</strong> <?php echo "".$event["code_postal_event"]." ". $event["adresse_event"]." ". $event["ville_event"]; ?> </p>
+                    <p><strong>Horaire :</strong> <?php echo "le ".$event["DateE"]." de ".$event["heure_debut"]."h à ".$event["heure_fin"]."h"; ?> </p>
+                    <p><strong>Description :</strong> <?php echo $event["description_event"]; ?> </p>
+                    <p><strong>Crée par :</strong> <?php echo $createur[0]; ?> </p>
+                    <p><strong>Genre de l'évenement :</strong> <?php echo $typeevent[0]; ?> </p>
+		</div>
+    </div>
 </div>
-  </div>
-</body>
-</html>

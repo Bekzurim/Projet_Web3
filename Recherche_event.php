@@ -32,38 +32,40 @@ if (!isset($_SESSION['islog'])) {
     </head>
     <body>
       
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <i id="logo" class="fa fa-pagelines fa-3x" aria-hidden="true"></i>
-                    <a class="navbar-brand col-2" ><?=$_SESSION['pseudo']?></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse col-10" id="navbarNavDropdown">
-                      <ul class="navbar-nav col-12">
-                        <li class="nav-item active col-3">
-                          <a class="nav-link " href="Accueil.php">Accueil</a>
-                        </li>
-                        <li class="nav-item dropdown col-3 ">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Mes Evenements
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#Creer_events">Créer mes évenements</a>
-                                        <a class="dropdown-item" href="Listes_events.php">Listes de mes évenements</a>
-                                        <a class="dropdown-item" href="Recherche_event.php">Rechercher un évenement</a>
-                                      </div>
-                                    </li>
-                        <li class="nav-item col-3">
-                          <a class="nav-link" href="Annonceur.php">Annonceur suivi</a>
-                        </li>
-                        <li class="nav-item col-3">
-                            <a class="nav-link" href="Profil.php">Mon Profil</a>
-                          </li>
-
-                          
-                      </ul>
-                    </div>
-                  </nav>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        
+              <i id="logo" class="fa fa-pagelines fa-3x" aria-hidden="true"></i>
+              <a class="navbar-brand col-2" ><?=$_SESSION['pseudo']?></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse col-10" id="navbarNavDropdown">
+                <ul class="navbar-nav col-12">
+                  <li class="nav-item active col-2">
+                    <a class="nav-link " href="Accueil.php">Accueil</a>
+                  </li>
+                  <li class="nav-item dropdown col-3 ">
+                          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Mes Evenements
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                  <a class="dropdown-item" href="#Creer_events">Créer mes évenements</a>
+                                  <a class="dropdown-item" href="Listes_events.php">Listes de mes évenements</a>
+                                  <a class="dropdown-item" href="Recherche_event.php">Rechercher un évenement</a>
+                                </div>
+                              </li>
+                  <li class="nav-item col-3">
+                    <a class="nav-link" href="Annonceur.php">Annonceur suivi</a>
+                  </li>
+                  <li class="nav-item col-2">
+                      <a class="nav-link" href="Profil.php">Mon Profil</a>
+                    </li>
+                    <li class="nav-item col-3">
+                    <a class="nav-link" href="Deconnexion.php"><i class="fas fa-sign-out-alt"></i>Déconnexion</a>
+                    </li>
+                    </ul>
+</div>
+</nav>
                 <div class="col-12" >
                   
                   
@@ -78,25 +80,16 @@ if (!isset($_SESSION['islog'])) {
                     <fieldset>
                     <legend >Rechercher un évenement</legend>
                       
-                    <form class="form-inline" >
+                    <form class="form-inline" action="" method="post" >
 					            <label id="lNom" for="Nom" class="mr-sm-2">Nom de l'évenement:</label>
                       <input id="Nom" class="form-control " type="text" placeholder="Nom de l'évenement recherché" >
-                    </form>
-                    
-                    <form class="form-inline">
                       <label id="lVille" for="Ville" class="mr-sm-2" >Ville de l'évenement:</label>
                       <input id="Ville" class="form-control " type="text" placeholder="Ville de l'évenement recherché" >
-                    </form>
-                    
-                    <form class="form-inline">
                       <label id="lcdpost" for="cdpost" class="mr-sm-2 ">Code Postal de l'évenement:</label>
                       <input id="cdpost" class="form-control " type="text" placeholder="Code Postal de l'évenement recherché" >
-                    </form>
-                      <form class="form-inline">
-                        <label id="ladr" for="adr" class="mr-sm-2" >Adresse de l'évenement:</label>
+                      <label id="ladr" for="adr" class="mr-sm-2" >Adresse de l'évenement:</label>
                       <input id="adr" class="form-control " type="text" placeholder="Adresse de l'évenement recherché">
-                    </form>
-                      <button class="btn btn-primary float-right" type="submit" onclick="submitForms()">Rechercher</button>
+                      <button class="btn btn-primary float-right" type="submit" >Rechercher</button>
                   </fieldset>
                     </div>
                 </div>
@@ -123,7 +116,7 @@ if (!isset($_SESSION['islog'])) {
 		})
 		.addTo(clusterLayer)
 
-		marker.bindPopup('<a href="http://www.airbnb.com/rooms/'+markers[m].id+'" target="blank">'+markers[m].id+"</a>");
+		marker.bindPopup('<form method="post" action="pageEvent.php" class="inline"><input type="hidden" name="extra_submit_param" value="extra_submit_value"><button type="submit" name="id_event" value="'+markers[m].id+'" class="link-button">'+markers[m].name+'</button></form>');
 		marker.on('click', function (e) {
 			this.openPopup();
 		});

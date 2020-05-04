@@ -1,9 +1,14 @@
 <?php
-session_start();
+include_once 'connectDB.php';
 if (!isset($_SESSION['islog'])) {
 	header('Location: Login.html');
-	exit;
-}
+  exit;}
+  
+
+
+$query="SELECT * FROM Evenement INNER JOIN annonceur ON Evenement.id_annonceur=annonceur.id_annonceur ";
+$result = mysqli_query($con, $query);
+
 ?>
 <!doctype html>
 <html lang="fr">
@@ -34,38 +39,41 @@ if (!isset($_SESSION['islog'])) {
       
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <i id="logo" class="fa fa-pagelines fa-3x"  aria-hidden="true"></i>
-    <a class="navbar-brand col-2" ><?=$_SESSION['pseudo']?></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse col-10" id="navbarNavDropdown">
-      <ul class="navbar-nav col-12">
-        <li class="nav-item active col-3">
-          <a class="nav-link " href="Accueil.php">Accueil </a>
-        </li>
-        <li class="nav-item dropdown col-3 ">
-                <a class="nav-link dropdown-toggle" href="#Mes_evenements" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Mes Evenements
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#Creer_events">Créer mes évenements</a>
-                        <a class="dropdown-item" href="Listes_events.php">Listes de mes évenements</a>
-                        <a class="dropdown-item" href="Recherche_event.php">Rechercher un évenement</a>
-                      </div>
+      
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        
+              <i id="logo" class="fa fa-pagelines fa-3x" aria-hidden="true"></i>
+              <a class="navbar-brand col-2" ><?=$_SESSION['pseudo']?></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse col-10" id="navbarNavDropdown">
+                <ul class="navbar-nav col-12">
+                  <li class="nav-item active col-2">
+                    <a class="nav-link " href="Accueil.php">Accueil</a>
+                  </li>
+                  <li class="nav-item dropdown col-3 ">
+                          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Mes Evenements
+                          </a>
+                          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                  <a class="dropdown-item" href="#Creer_events">Créer mes évenements</a>
+                                  <a class="dropdown-item" href="Listes_events.php">Listes de mes évenements</a>
+                                  <a class="dropdown-item" href="Recherche_event.php">Rechercher un évenement</a>
+                                </div>
+                              </li>
+                  <li class="nav-item col-3">
+                    <a class="nav-link" href="Annonceur.php">Annonceur suivi</a>
+                  </li>
+                  <li class="nav-item col-2">
+                      <a class="nav-link" href="Profil.php">Mon Profil</a>
                     </li>
-        <li class="nav-item col-3">
-          <a class="nav-link" href="Annonceur.php">Annonceur suivi</a>
-        </li>
-        <li class="nav-item col-3">
-            <a class="nav-link" href="Profil.php">Mon Profil</a>
-          </li>
-
-          
-      </ul>
-    </div>
-  </nav>
+                    <li class="nav-item col-3">
+                    <a class="nav-link" href="Deconnexion.php"><i class="fas fa-sign-out-alt"></i>Déconnexion</a>
+                    </li>
+                    </ul>
+</div>
+</nav>
   <div class="container" >
     <label >Rechercher un evenement suivi</label >
     <input class="form-control mb-4" id="tableSearch" type="text"
@@ -76,7 +84,7 @@ if (!isset($_SESSION['islog'])) {
       <thead>
         <tr>
           <th id="te1" >Nom evenement</th>
-          <th id="te2">Adresse</th>
+          <th id="te2">Ville</th>
           <th id="te3">Annonceur</th>
           <th id="te4">Participation</th>
           <th>Localisation</th>
@@ -90,168 +98,16 @@ if (!isset($_SESSION['islog'])) {
             <div id="scroll">
               <table class="table table-bordered table-striped">
                 <tbody id="Tableevent">
-            <tr>
-          <td id="te1">test1 </td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test2</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">Test1</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test12</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test195</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test1q</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test1qs</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test1d</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test1</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test1</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test1</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test1</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test1</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test1</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test1</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test1</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test1</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
-        <tr>
-          <td id="te1">test1</td>
-          <td id="te2">42 rue du Test</td>
-          <td id="te3">theTest </td>
-          <td id="te4">Peut etre</td>
-          <td><a href="#">
-            ici
-          </a></td>
-        </tr>
+                <?php
+        while($event = $result->fetch_array())
+        {
+        echo '<tr>
+        <td id="te1">'.$event["nom_event"].'</td><td id="te2">'.$event["ville_event"].'</td><td id="te3">'.$event["pseudonyme"].'</td><td id="te4">Peut etre</td>
+        <td><form method="post" action="pageEvent.php" class="inline"><input type="hidden" name="extra_submit_param" value="extra_submit_value"><button type="submit" name="id_event" value="'.$event["id_evenement"].'" class="link-button">ici</button></form></td>
+        </tr>';
+        }
+        ?>
+
       </tbody>
       </table>
       </div>
