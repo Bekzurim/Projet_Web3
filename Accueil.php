@@ -6,6 +6,8 @@ if (!isset($_SESSION['islog'])) {
 	header('Location: Login.html');
   exit;
 }
+$suiteposts=array_slice($posts,5);
+$posts=array_slice($posts,0,5)
 ?>
 <!doctype html>
 <html lang="fr">
@@ -63,18 +65,38 @@ if (!isset($_SESSION['islog'])) {
                           </ul>
     </div>
   </nav>
-  <form id="commentaire" action="Commentary.php" method="post" >
+
+  <form  id="commentaires" enctype="multipart/form-data" action="Commentary.php" method="post" >
   <input type="text" name="contenu" id="contenu" placeholder="Entrer votre commentaire" size="55" minlength="1" />
-  <input type="submit" value="OK">
+  <label for="file" class="label-file">Publier une image ou une video</label>
+  <input type="file" id="file" name="file" class="input-file" accept="image/*,.mp4,.doc">
+  <input class="ecobutton" type="submit" value="Publier">
   </form>
   <div class="posts-wrapper">
    <?php foreach ($posts as $post): ?>
     
    	<div class="post">
      <div class="auteur">
-     <?php echo "Ecrit par ".idis($post['id_annonceur'])." le ".$post['dateA']." à ".$post['heureA']." : "?>
+     <?php 
+     $info=info($post['id_annonceur']);
+     echo '<img src="'.$info['image'].'">';
+     echo "Ecrit par ".$info['pseudonyme']." le ".$post['dateA']." à ".$post['heureA']." : ";?>
     </div>
-      <?php echo $post['contenue']; ?>
+      <?php if ($post['image']!=NULL){
+
+        echo '<img class="com" src="image/'.$post['image'].'" height="200" width="200" align="center">';
+        
+      }
+      if ($post['video']!=NULL){
+        echo '<video controls width="250">
+        <source src="video/'.$post['video'].'"
+                type="video/mp4">
+    
+        Vous ne pouvez pas lire ces vidéos.
+    </video>';
+      }
+      echo '<div class="com">'.$post['contenue'].'</div>';
+      ?>
       <div class="post-info">
 	    <!-- if user likes post, style button differently -->
       	<i <?php if (userLiked($post['id_actualite'])): ?>
@@ -100,6 +122,77 @@ if (!isset($_SESSION['islog'])) {
      </div>
    <?php endforeach ?>
   </div>
+  <div class="posts-wrapper">
+   <?php foreach ($suiteposts as $post): ?>
+    
+   	<div class="post" id="suite">
+     <div class="auteur">
+     <?php 
+     $info=info($post['id_annonceur']);
+     echo '<img src="'.$info['image'].'">';
+     echo "Ecrit par ".$info['pseudonyme']." le ".$post['dateA']." à ".$post['heureA']." : ";?>
+    </div>
+      <?php if ($post['image']!=NULL){
+
+        echo '<img class="com" src="image/'.$post['image'].'" height="200" width="200" align="center">';
+        
+      }
+      if ($post['video']!=NULL){
+        echo '<video controls width="250">
+        <source src="video/'.$post['video'].'"
+                type="video/mp4">
+    
+        Vous ne pouvez pas lire ces vidéos.
+    </video>';
+      }
+      echo '<div class="com">'.$post['contenue'].'</div>';
+      ?>
+      <div class="post-info">
+	    <!-- if user likes post, style button differently -->
+      	<i <?php if (userLiked($post['id_actualite'])): ?>
+      		  class="fa fa-thumbs-up like-btn"
+      	  <?php else: ?>
+      		  class="fa fa-thumbs-o-up like-btn"
+      	  <?php endif ?>
+      	  data-id="<?php echo $post['id_actualite'] ?>"></i>
+      	<span class="likes"><?php echo getLikes($post['id_actualite']); ?></span>
+      	
+      	&nbsp;&nbsp;&nbsp;&nbsp;
+
+	    <!-- if user dislikes post, style button differently -->
+      	<i 
+      	  <?php if (userDisliked($post['id_actualite'])): ?>
+      		  class="fa fa-thumbs-down dislike-btn"
+      	  <?php else: ?>
+      		  class="fa fa-thumbs-o-down dislike-btn"
+      	  <?php endif ?>
+      	  data-id="<?php echo $post['id_actualite'] ?>"></i>
+      	<span class="dislikes"><?php echo getDislikes($post['id_actualite']); ?></span>
+      </div>
+     </div>
+   <?php endforeach ?>
+  </div>
+  <button onclick="myFunction()" id="myBtn">Voir des commentaires plus anciens</button>
   <script src="script.js"></script>
+  <script> 
+$('.input-file').change(function() {
+  var i = $(this).prev('label').clone();
+  var file = $('.input-file')[0].files[0].name;
+  $(this).prev('label').text(file);
+});
+
+function myFunction() {
+  var suite = document.getElementById("suite");
+  var btnText = document.getElementById("myBtn");
+
+  if (suite.style.display === "block") {
+    btnText.innerHTML = "Voir des commentaires plus anciens";
+    suite.style.display = "none";
+  } else {
+    btnText.innerHTML = "Ne Voir que les commentaires récents";
+    suite.style.display = "block";
+  }
+} 
+</script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 07 mai 2020 à 16:44
+-- Généré le : ven. 08 mai 2020 à 01:10
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP : 7.4.4
 
@@ -33,6 +33,7 @@ CREATE TABLE `Actualite` (
   `heureA` time NOT NULL,
   `contenue` text NOT NULL,
   `image` text DEFAULT NULL,
+  `video` text DEFAULT NULL,
   `id_annonceur` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -40,15 +41,14 @@ CREATE TABLE `Actualite` (
 -- Déchargement des données de la table `Actualite`
 --
 
-INSERT INTO `Actualite` (`id_actualite`, `dateA`, `heureA`, `contenue`, `image`, `id_annonceur`) VALUES
-(1, '2020-04-19', '15:00:00', 'La mairie de Paris a annocé la fermeture définitive d\'un parc ! Où vont allez tous ces pauvres petit lapin?!', NULL, 5),
-(2, '2020-04-19', '15:02:00', 'Finallement j\'avais mal compris ! Il vont agrandir le parc! Ouf sauver !', NULL, 5),
-(3, '2020-04-19', '18:05:54', 'Je participe a la marche organiser par ma ville ! Hâte d\'y être !', NULL, 4),
-(4, '2020-04-19', '20:00:00', 'L’événement de la semaine dernière était vraiment mal organiser... C\'est une honte !\r\n#OnNousMent', NULL, 3),
-(5, '2020-04-20', '15:01:00', 'Renseigner vous avant de dire des bêtises !', NULL, 2),
-(6, '2020-05-02', '16:18:29', 'test de commentaire en esperant que ca marche', NULL, 1),
-(10, '2020-05-02', '17:15:13', 'Bon ben ca marche', NULL, 1),
-(11, '2020-05-05', '14:21:16', 'commentaire test', NULL, 1);
+INSERT INTO `Actualite` (`id_actualite`, `dateA`, `heureA`, `contenue`, `image`, `video`, `id_annonceur`) VALUES
+(1, '2020-04-19', '15:00:00', 'La mairie de Paris a annocé la fermeture définitive d\'un parc ! Où vont allez tous ces pauvres petit lapin?!', NULL, NULL, 5),
+(2, '2020-04-19', '15:02:00', 'Finallement j\'avais mal compris ! Il vont agrandir le parc! Ouf sauver !', NULL, NULL, 5),
+(3, '2020-04-19', '18:05:54', 'Je participe a la marche organiser par ma ville ! Hâte d\'y être !', NULL, NULL, 4),
+(4, '2020-04-19', '20:00:00', 'L’événement de la semaine dernière était vraiment mal organiser... C\'est une honte !\r\n#OnNousMent', NULL, NULL, 3),
+(5, '2020-04-20', '15:01:00', 'Renseigner vous avant de dire des bêtises !', NULL, NULL, 2),
+(13, '2020-05-07', '17:02:15', 'L\'outil de prédilection pour les décisions écologiques de Trump', 'test.png', NULL, 1),
+(14, '2020-05-07', '18:36:05', 'Ceux qui disent que la Terre est vivante comme elle est me font penser à ça', NULL, 'its-alive.mp4', 1);
 
 -- --------------------------------------------------------
 
@@ -159,6 +159,9 @@ INSERT INTO `likes_dislikes` (`id_annonc`, `id_post`, `action`) VALUES
 (1, 6, 'like'),
 (1, 7, 'like'),
 (1, 10, 'dislike'),
+(1, 11, 'like'),
+(1, 13, 'like'),
+(1, 15, 'like'),
 (2, 2, 'dislike');
 
 -- --------------------------------------------------------
@@ -333,7 +336,7 @@ ALTER TABLE `Utilisation`
 -- AUTO_INCREMENT pour la table `Actualite`
 --
 ALTER TABLE `Actualite`
-  MODIFY `id_actualite` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_actualite` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT pour la table `annonceur`

@@ -11,14 +11,14 @@ if ( mysqli_connect_errno() ) {
 	// If there is an error with the connection, stop the script and display the error.
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
-function idis($id)
+function info($id)
 {
   global $con;
-  $sql = "SELECT pseudonyme FROM annonceur 
+  $sql = "SELECT * FROM annonceur 
   		  WHERE id_annonceur = $id" ;
   $rs = mysqli_query($con, $sql);
-  $result = mysqli_fetch_array($rs);
-  return $result[0];
+  $result = mysqli_fetch_array($rs,MYSQLI_ASSOC);
+  return $result;
 }
 
 
