@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 05 mai 2020 à 00:50
+-- Généré le : jeu. 07 mai 2020 à 16:44
 -- Version du serveur :  10.4.11-MariaDB
 -- Version de PHP : 7.4.4
 
@@ -32,6 +32,7 @@ CREATE TABLE `Actualite` (
   `dateA` date NOT NULL,
   `heureA` time NOT NULL,
   `contenue` text NOT NULL,
+  `image` text DEFAULT NULL,
   `id_annonceur` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -39,14 +40,15 @@ CREATE TABLE `Actualite` (
 -- Déchargement des données de la table `Actualite`
 --
 
-INSERT INTO `Actualite` (`id_actualite`, `dateA`, `heureA`, `contenue`, `id_annonceur`) VALUES
-(1, '2020-04-19', '15:00:00', 'La mairie de Paris a annocé la fermeture définitive d\'un parc ! Où vont allez tous ces pauvres petit lapin?!', 5),
-(2, '2020-04-19', '15:02:00', 'Finallement j\'avais mal compris ! Il vont agrandir le parc! Ouf sauver !', 5),
-(3, '2020-04-19', '18:05:54', 'Je participe a la marche organiser par ma ville ! Hâte d\'y être !', 4),
-(4, '2020-04-19', '20:00:00', 'L’événement de la semaine dernière était vraiment mal organiser... C\'est une honte !\r\n#OnNousMent', 3),
-(5, '2020-04-20', '15:01:00', 'Renseigner vous avant de dire des bêtises !', 2),
-(6, '2020-05-02', '16:18:29', 'test de commentaire en esperant que ca marche', 1),
-(10, '2020-05-02', '17:15:13', 'Bon ben ca marche', 1);
+INSERT INTO `Actualite` (`id_actualite`, `dateA`, `heureA`, `contenue`, `image`, `id_annonceur`) VALUES
+(1, '2020-04-19', '15:00:00', 'La mairie de Paris a annocé la fermeture définitive d\'un parc ! Où vont allez tous ces pauvres petit lapin?!', NULL, 5),
+(2, '2020-04-19', '15:02:00', 'Finallement j\'avais mal compris ! Il vont agrandir le parc! Ouf sauver !', NULL, 5),
+(3, '2020-04-19', '18:05:54', 'Je participe a la marche organiser par ma ville ! Hâte d\'y être !', NULL, 4),
+(4, '2020-04-19', '20:00:00', 'L’événement de la semaine dernière était vraiment mal organiser... C\'est une honte !\r\n#OnNousMent', NULL, 3),
+(5, '2020-04-20', '15:01:00', 'Renseigner vous avant de dire des bêtises !', NULL, 2),
+(6, '2020-05-02', '16:18:29', 'test de commentaire en esperant que ca marche', NULL, 1),
+(10, '2020-05-02', '17:15:13', 'Bon ben ca marche', NULL, 1),
+(11, '2020-05-05', '14:21:16', 'commentaire test', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -156,7 +158,7 @@ INSERT INTO `likes_dislikes` (`id_annonc`, `id_post`, `action`) VALUES
 (1, 5, 'dislike'),
 (1, 6, 'like'),
 (1, 7, 'like'),
-(1, 10, 'like'),
+(1, 10, 'dislike'),
 (2, 2, 'dislike');
 
 -- --------------------------------------------------------
@@ -201,7 +203,7 @@ CREATE TABLE `Suivre` (
 --
 
 INSERT INTO `Suivre` (`id_annonceur1`, `id_annonceur2`) VALUES
-(1, 3),
+(1, 2),
 (2, 1),
 (3, 1),
 (3, 2),
@@ -331,7 +333,7 @@ ALTER TABLE `Utilisation`
 -- AUTO_INCREMENT pour la table `Actualite`
 --
 ALTER TABLE `Actualite`
-  MODIFY `id_actualite` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_actualite` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `annonceur`
