@@ -1,0 +1,271 @@
+#scroll {
+    height:400px;
+    overflow-y:scroll;
+    overflow:auto;
+}
+#te1{
+    width:18em
+}
+#te2{
+    width:10em
+}
+#te3{
+    width:13em
+}
+#te4{
+    width:15em
+}
+#trannonce {
+    border-bottom:double
+}
+#tdannonce {
+    border:none;
+}
+#divannonce {
+    border:double;
+}
+#logo{
+    color:green;
+}
+#soustabl{
+    padding: 0;
+}
+body {
+    background-color:green;
+}
+legend , label,#search {
+    color : white;
+}
+
+table {
+    background-color: white;
+}
+
+#lNom {
+    padding:0% 12% 0% 20% ;
+}
+#searchbtn{
+    display: block;
+    float: inline-end;
+    margin-left: auto;
+    
+}
+#ladr   {
+    padding:0% 10% 0% 20% ;
+
+}
+
+#lcdpost {
+    padding:0% 7% 0% 20% ;
+}
+
+#lVille {
+    padding:0% 13% 0% 20% ;
+}
+#commentaire{
+        width: 30%;
+        margin: 0 auto;
+
+}
+
+#contenu{
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+
+#searchevent {
+    text-align: center ; 
+    line-height:65px;
+}
+
+#macarte {
+    width: 910px;
+    height: 600px;
+    border: 0;
+    margin: auto;
+    display: block;
+
+}
+
+.profile 
+{
+    min-height: 355px;
+    display: inline-block;
+    }
+.divider 
+{
+    border-top:1px solid rgba(0,0,0,0.1);
+    }
+.emphasis 
+{
+    border-top: 4px solid transparent;
+    }
+.emphasis:hover 
+{
+    border-top: 4px solid #1abc9c;
+    }
+.emphasis h2
+{
+    margin-bottom:0;
+    }
+span.tags 
+{
+    background: #1abc9c;
+    border-radius: 2px;
+    color: #f5f5f5;
+    font-weight: bold;
+    padding: 2px 4px;
+    }
+    .login {
+        width: 400px;
+        background-color: #ffffff;
+        box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.3);
+        margin: 100px auto;
+  }
+  .login h1 {
+        text-align: center;
+        color: #5b6574;
+        font-size: 24px;
+        padding: 20px 0 20px 0;
+        border-bottom: 1px solid #dee0e4;
+  }
+  .login form {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 20px;
+  }
+  .login form label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 50px;
+        background-color: #3274d6;
+        color: #ffffff;
+  }
+  .login form input[type="password"], .login form input[type="text"] {
+        width: 310px;
+        height: 50px;
+        border: 1px solid #dee0e4;
+        margin-bottom: 20px;
+        padding: 0 15px;
+  }
+  .login form input[type="submit"] {
+        width: 100%;
+        padding: 15px;
+       margin-top: 20px;
+        background-color: #3274d6;
+        border: 0;
+        cursor: pointer;
+        font-weight: bold;
+        color: #ffffff;
+        transition: background-color 0.2s;
+  }
+  .login form input[type="submit"]:hover {
+      background-color: #2868c7;
+        transition: background-color 0.2s;
+  }
+  .posts-wrapper {
+    margin: 0 auto;
+    
+    width: 700px; 
+}
+    .auteur{
+    height: 45px;
+    border-bottom: 2px solid black;
+    
+
+    }
+    
+    .post {
+    background-color: white;
+    border:1px ridge black;
+    width:100%;
+    border-radius: 4px;
+    padding-bottom: 5%;
+    margin : 5%
+    }
+    .post-info {
+        text-align: right;
+
+
+    }
+.inline {
+        display: inline;
+      }
+      
+.link-button {
+        background: none;
+        border: none;
+        color: blue;
+        text-decoration: underline;
+        cursor: pointer;
+        font-size: 1em;
+        font-family: serif;
+      }
+.link-button:focus {
+        outline: none;
+      }
+.link-button:active {
+        color:red;
+      }
+img.com {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto }
+video {
+            width: 100%;
+            height: auto;
+        }
+#commentaires{
+    display: block;
+    width: 600px;
+    margin: 0 auto;
+}
+.auteur img {
+    float: left;
+    max-width: 40px;
+    width: 100%;
+    max-height: 40px;
+    margin-right: 20px;
+    border-radius: 80%;
+  }
+.ecobutton{
+        display: block;
+        width: 80px;
+        border:solid 2px;
+        padding:6px 0 6px 0;
+        border-radius:8px;
+        background:green;
+        font:bold 13px Arial;
+        color:#fff;
+    }
+    .label-file {
+        display: block;
+        cursor: pointer;
+        color: #00b1ca;
+        font-weight: bold;
+    }
+    .label-file:hover {
+        color: #25a5c4;
+    }
+    .input-file {
+        display: none;
+    }
+    #suite {
+        display: none;
+    }
+    #myBtn{
+        display: block;
+   margin : auto;
+   background: none;
+   border: none;
+   color: lightblue;
+   cursor: pointer;
+   font-size: 1em;
+
+    }
