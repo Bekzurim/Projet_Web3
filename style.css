@@ -33,7 +33,7 @@
 body {
     background-color:green;
 }
-legend , label {
+legend , label,#search {
     color : white;
 }
 
@@ -41,13 +41,22 @@ table {
     background-color: white;
 }
 
-#lNom , #ladr   {
-    padding:0% 9% 0% 20% ;
+#lNom {
+    padding:0% 12% 0% 20% ;
+}
+#searchbtn{
+    display: block;
+    float: inline-end;
+    margin-left: auto;
+    
+}
+#ladr   {
+    padding:0% 10% 0% 20% ;
 
 }
 
 #lcdpost {
-    padding:0% 5% 0% 20% ;
+    padding:0% 7% 0% 20% ;
 }
 
 #lVille {
@@ -71,9 +80,12 @@ table {
 }
 
 #macarte {
-    width: 620px; 
-    height: 500px; 
-    float:left
+    width: 910px;
+    height: 600px;
+    border: 0;
+    margin: auto;
+    display: block;
+
 }
 
 .profile 

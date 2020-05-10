@@ -87,7 +87,7 @@ $typeevent = $result->fetch_array();
 <div class="container">
 	<div class="row">
 		<div class="col" >
-            <img src="https://pixabay.com/get/55e0d64a4352ad14f6d1867dda35367b1d37d8e55650794a_1920.jpg" height="300" width="500" style="float:left">
+            <img src="image/paysage.jpg" height="300" width="500" style="float:left">
         <div>
             <div class="col">
 			<h2> <?php echo $event["nom_event"]; ?> </h2>

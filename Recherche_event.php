@@ -66,35 +66,14 @@ if (!isset($_SESSION['islog'])) {
                     </ul>
 </div>
 </nav>
-                <div class="col-12" >
                   
                   
-                  <div class="d-inline col-6" >
-                    <fieldset style="float:left">
-                      <legend >Carte des évenements :</legend>
+                  <div class="d-inline col-12" >
+                    <fieldset >
+                      <legend style="text-align:center">Carte des évenements :</legend>
                     <div id="macarte"></div>
                   </fieldset>
                 </div>
-
-                  <div id ="searchevent" class="d-inline col-6" >
-                    <fieldset>
-                    <legend >Rechercher un évenement</legend>
-                      
-                    <form class="form-inline" action="" method="post" >
-					            <label id="lNom" for="Nom" class="mr-sm-2">Nom de l'évenement:</label>
-                      <input id="Nom" class="form-control " type="text" placeholder="Nom de l'évenement recherché" >
-                      <label id="lVille" for="Ville" class="mr-sm-2" >Ville de l'évenement:</label>
-                      <input id="Ville" class="form-control " type="text" placeholder="Ville de l'évenement recherché" >
-                      <label id="lcdpost" for="cdpost" class="mr-sm-2 ">Code Postal de l'évenement:</label>
-                      <input id="cdpost" class="form-control " type="text" placeholder="Code Postal de l'évenement recherché" >
-                      <label id="ladr" for="adr" class="mr-sm-2" >Adresse de l'évenement:</label>
-                      <input id="adr" class="form-control " type="text" placeholder="Adresse de l'évenement recherché">
-                      <button class="btn btn-primary float-right" type="submit" >Rechercher</button>
-                  </fieldset>
-                    </div>
-                </div>
-
-
                   <script>
                       var mymap = L.map('macarte').setView([46.3630104, 2.9846608], 6);
                       L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
@@ -123,22 +102,7 @@ if (!isset($_SESSION['islog'])) {
 	}	
 		
 	mymap.addLayer(clusterLayer);
-      
-
-
-
-  submitForms = function(){
-    var nom =document.getElementById("Nom").value;
-    document.getElementById("Nom").value = '';
-    var ville=document.getElementById("Ville").value;
-    document.getElementById("Ville").value = '';
-    var codepost=document.getElementById("cdpost").value;
-    document.getElementById("cdpost").value = '';
-    var adr=document.getElementById("adr").value;
-    document.getElementById("adr").value = '';
-    var request=nom+" "+ville+" "+codepost+" "+adr;
-    alert(request);
-}                  
+     
   </script>
                     
 
